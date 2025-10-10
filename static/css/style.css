@@ -1,0 +1,190 @@
+/* --- Thème Océan pour tout le projet --- */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #a0e9fd, #ffffff);
+    margin: 0;
+    padding: 20px;
+    color: #03396c;
+}
+
+h2, h3 {
+    color: #03396c;
+    text-shadow: 1px 1px 2px #cce7ff;
+}
+
+a.logout {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #005b96;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+a.logout:hover {
+    background-color: #03396c;
+}
+
+/* --- Formulaires avec cadre et dimensions optimisées --- */
+form {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 450px; /* largeur optimale */
+    margin-bottom: 30px;
+    border: 2px solid #0077b6; /* Cadre bien visible */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+form input, form select, form textarea, form button {
+    width: 100%;
+    padding: 10px; /* juste assez */
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #0077b6; /* cadre des champs */
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #0077b6;
+    color: #fff;
+    border: 2px solid #005b96;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: #005b96;
+}
+
+/* --- Messages d'erreur --- */
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* --- Tableaux avec cadre et dimensions optimisées --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    border: 2px solid #0077b6; /* cadre externe */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background-color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95em; /* texte légèrement plus petit pour tout rentrer */
+}
+
+th, td {
+    padding: 10px 12px; /* juste assez */
+    text-align: left;
+    border: 1px solid #0077b6; /* cadre interne */
+}
+
+th {
+    background-color: #0077b6;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+tr:nth-child(even) td {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+tr:hover td {
+    background-color: rgba(0, 123, 255, 0.12);
+}
+
+p {
+    font-size: 1em;
+    color: #005b96;
+}
+
+
+/* ===== Merci page ===== */
+.merci-container {
+    max-width: 500px;
+    margin: 80px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.merci-container h2 {
+    color: #03396c;
+    margin-bottom: 20px;
+}
+
+.merci-container p {
+    color: #005b96;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.merci-container a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0077b6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.merci-container a:hover {
+    background-color: #03396c;
+}
+
+/* ===== Dashboard Admin ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #0077b6;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+tr:nth-child(even) td {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+tr:hover td {
+    background-color: rgba(0, 123, 255, 0.15);
+}
+
+a.logout {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #005b96;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+a.logout:hover {
+    background-color: #03396c;
+}

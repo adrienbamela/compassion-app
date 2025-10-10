@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questions - La Compassion</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<h2>Envoyer une question</h2>
+<form method="post">
+    <input type="text" name="nom" placeholder="Nom" required>
+    <textarea name="question" placeholder="Votre question" required></textarea>
+    <input type="hidden" name="event" value="{{ request.args.get('event','General') }}">
+    <button type="submit">Envoyer</button>
+</form>
+</body>
+</html>

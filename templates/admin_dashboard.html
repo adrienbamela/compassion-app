@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin - La Compassion</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<h2>Dashboard Admin</h2>
+<a href="{{ url_for('admin_logout') }}" class="logout">Se déconnecter</a>
+
+<h3>Présences</h3>
+{% if presences %}
+<table>
+<tr>
+{% for key in presences[0].keys() %}
+<th>{{ key }}</th>
+{% endfor %}
+</tr>
+{% for row in presences %}
+<tr>
+{% for value in row.values() %}
+<td>{{ value }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p>Aucune présence enregistrée.</p>
+{% endif %}
+
+<h3>Questions</h3>
+{% if questions %}
+<table>
+<tr>
+{% for key in questions[0].keys() %}
+<th>{{ key }}</th>
+{% endfor %}
+</tr>
+{% for row in questions %}
+<tr>
+{% for value in row.values() %}
+<td>{{ value }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p>Aucune question.</p>
+{% endif %}
+</body>
+</html>

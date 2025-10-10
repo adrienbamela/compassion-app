@@ -1,0 +1,21 @@
+# Virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Flask instance folder
+instance/
+
+# Environment variables
+.env
+
+# Credentials (local testing)
+creds.json
+
+# Editor-specific files (optionnel)
+.vscode/
+.idea/

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merci !</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="merci-container">
+    <h2>Merci !</h2>
+    <p>{{ message }}</p>
+    <a href="{{ request.referrer or url_for('index') }}">Retour</a>
+</div>
+</body>
+</html>

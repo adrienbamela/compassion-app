@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, send_file, abort
 import os
 from openpyxl import Workbook, load_workbook
 from datetime import datetime
@@ -6,7 +6,14 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'devsecret')
 
-EXCEL_FILE = 'presences_questions.xlsx'
+# --- Configurable data path (useful for Render persistent disk) ---
+DATA_DIR = os.environ.get('DATA_DIR', '.')  # par défaut le répertoire de l'app
+EXCEL_FILENAME = os.environ.get('EXCEL_FILENAME', 'presences_questions.xlsx')
+EXCEL_FILE = os.path.join(DATA_DIR, EXCEL_FILENAME)
+
+# Create data dir if it doesn't exist
+os.makedirs(DATA_DIR, exist_ok=True)
+
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin123')
 
 # --- Initialiser le fichier Excel si n'existe pas ---
@@ -37,7 +44,8 @@ def presence():
         sexe = request.form['sexe']
         quartier = request.form['quartier']
         telephone = request.form['telephone']
-        evenement = request.form.get('event','General')
+        # prefer form post event; fallback to args
+        evenement = request.form.get('event') or request.args.get('event','General')
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         wb = load_workbook(EXCEL_FILE)
@@ -52,7 +60,7 @@ def questions():
     if request.method == 'POST':
         nom = request.form['nom']
         question = request.form['question']
-        evenement = request.form.get('event','General')
+        evenement = request.form.get('event') or request.args.get('event','General')
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         wb = load_workbook(EXCEL_FILE)
@@ -108,6 +116,16 @@ def admin_dashboard():
         })
 
     return render_template('admin_dashboard.html', presences=presences, questions=questions)
+
+@app.route('/admin/download')
+def admin_download():
+    # autorise seulement l'admin connecté à télécharger le fichier Excel
+    if not session.get('admin'):
+        return redirect(url_for('admin'))
+    if os.path.exists(EXCEL_FILE):
+        # envoi du fichier .xlsx en tant que téléchargement
+        return send_file(EXCEL_FILE, as_attachment=True)
+    return abort(404)
 
 @app.route('/admin/logout')
 def admin_logout():

@@ -7,47 +7,57 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<h2>Dashboard Admin</h2>
-<a href="{{ url_for('admin_logout') }}" class="logout">Se déconnecter</a>
+  <h2>Dashboard Admin</h2>
 
-<h3>Présences</h3>
-{% if presences %}
-<table>
-<tr>
-{% for key in presences[0].keys() %}
-<th>{{ key }}</th>
-{% endfor %}
-</tr>
-{% for row in presences %}
-<tr>
-{% for value in row.values() %}
-<td>{{ value }}</td>
-{% endfor %}
-</tr>
-{% endfor %}
-</table>
-{% else %}
-<p>Aucune présence enregistrée.</p>
-{% endif %}
+  <div style="display:flex; gap:10px; align-items:center; margin-bottom:18px;">
+    <a href="{{ url_for('admin_logout') }}" class="logout">Se déconnecter</a>
+    <!-- Bouton Télécharger Excel -->
+    <a href="{{ url_for('admin_download') }}" class="logout" style="background-color:#0096c7;">Télécharger Excel</a>
 
-<h3>Questions</h3>
-{% if questions %}
-<table>
-<tr>
-{% for key in questions[0].keys() %}
-<th>{{ key }}</th>
-{% endfor %}
-</tr>
-{% for row in questions %}
-<tr>
-{% for value in row.values() %}
-<td>{{ value }}</td>
-{% endfor %}
-</tr>
-{% endfor %}
-</table>
-{% else %}
-<p>Aucune question.</p>
-{% endif %}
+    <!-- Résumé rapide -->
+    <div style="margin-left: auto; color:#005b96; font-weight:600;">
+      Présences : {{ presences|length }} &nbsp; • &nbsp; Questions : {{ questions|length }}
+    </div>
+  </div>
+
+  <h3>Présences</h3>
+  {% if presences %}
+  <table>
+    <tr>
+      {% for key in presences[0].keys() %}
+      <th>{{ key }}</th>
+      {% endfor %}
+    </tr>
+    {% for row in presences %}
+    <tr>
+      {% for value in row.values() %}
+      <td>{{ value }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>Aucune présence enregistrée.</p>
+  {% endif %}
+
+  <h3>Questions</h3>
+  {% if questions %}
+  <table>
+    <tr>
+      {% for key in questions[0].keys() %}
+      <th>{{ key }}</th>
+      {% endfor %}
+    </tr>
+    {% for row in questions %}
+    <tr>
+      {% for value in row.values() %}
+      <td>{{ value }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>Aucune question.</p>
+  {% endif %}
 </body>
 </html>

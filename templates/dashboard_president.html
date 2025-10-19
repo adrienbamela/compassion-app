@@ -1,0 +1,35 @@
+<!-- templates/dashboard_president.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Dashboard Président</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <h2>Espace Président</h2>
+  <p>Connecté en tant que : <strong>{{ session.get('president_fullname', session.get('president')) }}</strong></p>
+
+  <div style="margin-bottom:16px;">
+    <a href="{{ url_for('inscription_ouvrier') }}" class="logout" style="background-color:#0096c7;">Inscrire un ouvrier</a>
+    <a href="{{ url_for('ouvriers') }}" class="logout" style="background-color:#0077b6;">Checklist ouvriers</a>
+    <a href="{{ url_for('logout') }}" class="logout" style="background-color:#555;">Se déconnecter</a>
+  </div>
+
+  <h3>Liste des ouvriers (aperçu)</h3>
+  {% if ouvriers %}
+    <table>
+      <tr><th>Nom</th><th>Prénom</th><th>Départements</th></tr>
+      {% for o in ouvriers %}
+        <tr>
+          <td>{{ o.nom }}</td>
+          <td>{{ o.prenom }}</td>
+          <td>{{ o.departements }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>Aucun ouvrier enregistré.</p>
+  {% endif %}
+</body>
+</html>

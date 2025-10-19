@@ -1,0 +1,35 @@
+<!-- templates/login_president.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Connexion Président</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div style="max-width:480px; margin:60px auto;">
+    <div style="text-align:center;">
+      <h2>Connexion - Président de Département</h2>
+      <p style="color:#005b96;">Identifiez-vous pour accéder à votre espace</p>
+    </div>
+
+    <form method="POST">
+      <label>Nom d’utilisateur</label>
+      <input type="text" name="username" required>
+
+      <label>Mot de passe</label>
+      <input type="password" name="password" required>
+
+      <button type="submit">Se connecter</button>
+    </form>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <p style="margin-top:12px; text-align:center;">
+      <a href="{{ url_for('index') }}">⬅ Retour à l’accueil</a>
+    </p>
+  </div>
+</body>
+</html>

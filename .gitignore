@@ -16,6 +16,9 @@ instance/
 # Credentials (local testing)
 creds.json
 
-# Editor-specific files (optionnel)
+# Editor-specific files
 .vscode/
-.idea/presences_questions.xlsx 
+.idea/
+
+# Runtime data
+presences_questions.xlsx

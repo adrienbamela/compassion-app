@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription Ouvrier - La Compassion</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container-center">
+  <h2 class="welcome-title">Inscription Ouvrier</h2>
+
+  <form method="POST">
+    Nom: <input type="text" name="nom" required><br><br>
+    Prénom: <input type="text" name="prenom" required><br><br>
+    
+    Sexe:
+    <select name="sexe" required>
+      <option value="M">M</option>
+      <option value="F">F</option>
+    </select><br><br>
+
+    Adresse: <input type="text" name="adresse"><br><br>
+    Téléphone: <input type="tel" name="telephone" pattern="[0-9]{8,15}" title="Numéro valide, 8 à 15 chiffres" required><br><br>
+    Email: <input type="email" name="email"><br><br>
+
+    Départements (Ctrl+clic pour plusieurs):
+    <select name="departements" multiple size="5" required>
+      <option value="LA JEUNESSE">LA JEUNESSE</option>
+      <option value="LA CHORALE">LA CHORALE</option>
+      <option value="LE PROTOCOLE">LE PROTOCOLE</option>
+      <option value="LA SECURITE">LA SECURITE</option>
+      <option value="HYGIENE ET SALUBRITE">HYGIENE ET SALUBRITE</option>
+    </select><br><br>
+
+    <input type="submit" value="Enregistrer" class="btn">
+  </form>
+
+  <a href="{{ url_for('index') }}" class="btn btn-back">Retour</a>
+</div>
+
+</body>
+</html>

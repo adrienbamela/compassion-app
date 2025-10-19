@@ -3,14 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Merci !</title>
+<title>Merci - La Compassion</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+
 <div class="merci-container">
     <h2>Merci !</h2>
-    <p>{{ message }}</p>
-    <a href="{{ request.referrer or url_for('index') }}">Retour</a>
+    <p>Votre action a été enregistrée avec succès.</p>
+    <a href="{{ url_for('index') }}">Retour à l'accueil</a>
 </div>
+
 </body>
 </html>

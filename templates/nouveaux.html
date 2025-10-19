@@ -3,29 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Poser une question - La Compassion</title>
+<title>Inscription Nouveaux venus - La Compassion</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
 <div class="container-center">
-  <h2 class="welcome-title">Poser une question</h2>
+  <h2 class="welcome-title">Inscription Nouveaux venus</h2>
 
   <form method="POST">
     Nom: <input type="text" name="nom" required><br><br>
+    Prénom: <input type="text" name="prenom" required><br><br>
     
-    Question:<br>
-    <textarea name="question" rows="4" required></textarea><br><br>
+    Sexe: 
+    <select name="sexe" required>
+      <option value="M">M</option>
+      <option value="F">F</option>
+    </select><br><br>
 
+    Quartier: <input type="text" name="quartier"><br><br>
+    Téléphone: <input type="tel" name="telephone" pattern="[0-9]{8,15}" title="Numéro valide, 8 à 15 chiffres" required><br><br>
+    
     Événement: 
     <select name="event" required>
+      <option value="Premier Culte">Premier Culte</option>
       <option value="CD">CD</option>
       <option value="IPE">IPE</option>
       <option value="EB">EB</option>
       <option value="Autre">Autre</option>
     </select><br><br>
 
-    <input type="submit" value="Envoyer" class="btn">
+    <input type="submit" value="Enregistrer" class="btn">
   </form>
 
   <a href="{{ url_for('index') }}" class="btn btn-back">Retour</a>
@@ -33,3 +41,4 @@
 
 </body>
 </html>
+

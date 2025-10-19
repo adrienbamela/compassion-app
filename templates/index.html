@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accueil - La Compassion</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container-center">
+
+    <h1 class="welcome-title">Bienvenue à La Compassion</h1>
+
+    <div class="home-links">
+{% if user_type == 'admin' %}
+    <a href="{{ url_for('admin_dashboard') }}" class="btn">Dashboard Admin</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-back">Se déconnecter</a>
+
+{% elif user_type == 'nouveau' %}
+    <a href="{{ url_for('nouveaux') }}" class="btn">Inscription Nouveaux venus</a>
+    <a href="{{ url_for('questions') }}" class="btn">J'ai une question</a>
+    <a href="{{ url_for('temoignage') }}" class="btn">J'ai un témoignage</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-back">Se déconnecter</a> <!-- Ajout déconnexion -->
+
+{% elif user_type == 'fidele' %}
+    <a href="{{ url_for('infos_eglise') }}" class="btn">Infos sur l'église</a>
+    <a href="{{ url_for('questions') }}" class="btn">J'ai une question</a>
+    <a href="{{ url_for('temoignage') }}" class="btn">J'ai un témoignage</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-back">Se déconnecter</a>
+
+{% elif user_type == 'president' %}
+    <a href="{{ url_for('ouvriers') }}" class="btn">Checklist Ouvriers</a>
+    <a href="{{ url_for('inscription_ouvrier') }}" class="btn">Inscription Ouvrier</a>
+    <a href="{{ url_for('admin_download') }}" class="btn">Télécharger liste Excel</a> <!-- Le président peut télécharger -->
+    <a href="{{ url_for('logout') }}" class="btn btn-back">Se déconnecter</a>
+
+{% else %}
+      <p>Vous n'êtes pas connecté. Choisissez votre profil :</p>
+  <a href="{{ url_for('login', role='admin') }}" class="btn">Admin</a>
+  <a href="{{ url_for('login', role='nouveau') }}" class="btn">Nouveau</a>
+  <a href="{{ url_for('login', role='fidele') }}" class="btn">Fidèle</a>
+  <a href="{{ url_for('login', role='president') }}" class="btn">Président</a>
+{% endif %}
+</div>
+
+</div>
+</body>
+</html>
+

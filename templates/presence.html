@@ -2,24 +2,29 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Présence - La Compassion</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<h2>Enregistrement de présence</h2>
-<form method="post">
-    <input type="text" name="nom" placeholder="Nom" required>
-    <input type="text" name="prenom" placeholder="Prénom" required>
-    <select name="sexe" required>
-        <option value="">Sexe</option>
-        <option value="Homme">Homme</option>
-        <option value="Femme">Femme</option>
-    </select>
-    <input type="text" name="quartier" placeholder="Quartier" required>
-    <input type="tel" name="telephone" placeholder="Téléphone" required>
-    <input type="hidden" name="event" value="{{ request.args.get('event','General') }}">
-    <button type="submit">Valider</button>
+<h2>Enregistrement Présence</h2>
+<form method="POST">
+  Nom: <input type="text" name="nom" required><br><br>
+  Prénom: <input type="text" name="prenom" required><br><br>
+  Sexe: 
+  <select name="sexe" required>
+    <option value="M">M</option>
+    <option value="F">F</option>
+  </select><br><br>
+  Quartier: <input type="text" name="quartier"><br><br>
+  Téléphone: <input type="tel" name="telephone" pattern="[0-9]{8,15}" title="Numéro valide, 8 à 15 chiffres"><br><br>
+  Événement: 
+  <select name="event">
+    <option value="CD">Culte Dominical (CD)</option>
+    <option value="EB">Étude Biblique (EB)</option>
+    <option value="IPE">Intercession & Prière (IPE)</option>
+    <option value="Réunion">Réunion</option>
+  </select><br><br>
+  <input type="submit" value="Enregistrer">
 </form>
 </body>
 </html>

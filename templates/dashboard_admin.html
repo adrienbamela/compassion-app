@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin - La Compassion</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+  input.search-box {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #0077b6;
+      font-size: 1em;
+      box-sizing: border-box;
+  }
+</style>
+</head>
+<body>
+
+<h2>Dashboard Admin</h2>
+<a href="{{ url_for('admin_download') }}" class="btn" style="margin-bottom:20px;">Télécharger Excel</a>
+
+<!-- ===== Présences ===== -->
+{% if presences %}
+<h3>Présences</h3>
+<input type="text" id="searchPresences" class="search-box" placeholder="Rechercher nom ou prénom...">
+<table id="presencesTable">
+    <tr>
+        {% for key in presences[0].keys() %}<th>{{ key }}</th>{% endfor %}
+    </tr>
+    {% for row in presences %}
+    <tr>
+        {% for value in row.values() %}<td>{{ value }}</td>{% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Aucune présence enregistrée.</p>
+{% endif %}
+
+<!-- ===== Questions ===== -->
+{% if questions %}
+<h3>Questions</h3>
+<input type="text" id="searchQuestions" class="search-box" placeholder="Rechercher nom ou question...">
+<table id="questionsTable">
+    <tr>
+        {% for key in questions[0].keys() %}<th>{{ key }}</th>{% endfor %}
+    </tr>
+    {% for row in questions %}
+    <tr>
+        {% for value in row.values() %}<td>{{ value }}</td>{% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Aucune question enregistrée.</p>
+{% endif %}
+
+<!-- ===== Témoignages ===== -->
+{% if temoignages %}
+<h3>Témoignages</h3>
+<input type="text" id="searchTemoignages" class="search-box" placeholder="Rechercher nom ou témoignage...">
+<table id="temoignagesTable">
+    <tr>
+        {% for key in temoignages[0].keys() %}<th>{{ key }}</th>{% endfor %}
+    </tr>
+    {% for row in temoignages %}
+    <tr>
+        {% for value in row.values() %}<td>{{ value }}</td>{% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Aucun témoignage enregistré.</p>
+{% endif %}
+
+<!-- ===== Scripts de recherche ===== -->
+<script>
+function filterTable(inputId, tableId) {
+    const input = document.getElementById(inputId);
+    const rows = document.querySelectorAll(`#${tableId} tr:not(:first-child)`);
+    input.addEventListener('keyup', function() {
+        const filter = this.value.toLowerCase();
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(filter) ? '' : 'none';
+        });
+    });
+}
+
+filterTable('searchPresences', 'presencesTable');
+filterTable('searchQuestions', 'questionsTable');
+filterTable('searchTemoignages', 'temoignagesTable');
+</script>
+
+</body>
+</html>

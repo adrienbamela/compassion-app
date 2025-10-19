@@ -3,27 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Poser une question - La Compassion</title>
+<title>Partager un témoignage - La Compassion</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
 <div class="container-center">
-  <h2 class="welcome-title">Poser une question</h2>
+  <h2 class="welcome-title">Partager un témoignage</h2>
 
   <form method="POST">
     Nom: <input type="text" name="nom" required><br><br>
     
-    Question:<br>
-    <textarea name="question" rows="4" required></textarea><br><br>
-
-    Événement: 
-    <select name="event" required>
-      <option value="CD">CD</option>
-      <option value="IPE">IPE</option>
-      <option value="EB">EB</option>
-      <option value="Autre">Autre</option>
-    </select><br><br>
+    Témoignage:<br>
+    <textarea name="temoignage" rows="5" required></textarea><br><br>
 
     <input type="submit" value="Envoyer" class="btn">
   </form>

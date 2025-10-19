@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Ouvriers - La Compassion</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+/* Container pour chaque ligne de ouvrier */
+.checkbox-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    border-bottom: 1px solid #cce7ff;
+}
+
+/* Noms à gauche */
+.checkbox-container span {
+    font-weight: 600;
+}
+
+/* Checkbox à droite */
+.checkbox-container input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-left: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container-center">
+  <h2 class="welcome-title">Checklist Ouvriers</h2>
+
+  {% if departements %}
+  <form method="POST">
+    <label for="departement">Département :</label>
+    <select name="departement" id="departement-select" required>
+      {% for dep in departements %}
+      <option value="{{ dep }}">{{ dep }}</option>
+      {% endfor %}
+    </select><br><br>
+
+    <div id="ouvriers-list">
+      <!-- La liste des ouvriers apparaîtra ici via JS -->
+    </div>
+
+    <br>
+    Événement: 
+    <select name="event" required>
+      <option value="CD">CD</option>
+      <option value="IPE">IPE</option>
+      <option value="EB">EB</option>
+      <option value="Autre">Autre</option>
+    </select><br><br>
+
+    <input type="submit" value="Enregistrer Présences" class="btn">
+  </form>
+  {% else %}
+    <p>Aucun département disponible.</p>
+  {% endif %}
+
+  <a href="{{ url_for('index') }}" class="btn btn-back">Retour</a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const select = document.getElementById("departement-select");
+    const listDiv = document.getElementById("ouvriers-list");
+
+    function updateOuvriers() {
+        const dep = select.value;
+        fetch(`/ouvriers/liste/${encodeURIComponent(dep)}`)
+            .then(response => response.json())
+            .then(data => {
+                listDiv.innerHTML = '';
+                if (data.length === 0) {
+                    listDiv.innerHTML = '<p>Aucun ouvrier dans ce département.</p>';
+                    return;
+                }
+                data.forEach(ouvrier => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'checkbox-container';
+
+                    const nameSpan = document.createElement('span');
+                    nameSpan.textContent = `${ouvrier.nom} ${ouvrier.prenom}`;
+
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.name = 'ouvrier';
+                    checkbox.value = `${ouvrier.nom}|${ouvrier.prenom}`;
+
+                    wrapper.appendChild(nameSpan);
+                    wrapper.appendChild(checkbox);
+                    listDiv.appendChild(wrapper);
+                });
+            });
+    }
+
+    select.addEventListener('change', updateOuvriers);
+    updateOuvriers();  // Affiche la liste au chargement
+});
+</script>
+
+</body>
+</html>
+
